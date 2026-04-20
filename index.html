@@ -1,3 +1,6 @@
+Here's your modified code with the 3 new listings, brand logos overlaid top-left, and updated styling:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,8 +39,10 @@
     </style>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
         html { scroll-behavior: smooth; }
         body { background-color: #0a0a0a; }
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -47,9 +52,37 @@
             opacity: 1;
             transform: translateY(0);
         }
-        /* Custom transition for the listing cards */
-        .project-card:hover .project-overlay {
-            opacity: 1;
+
+        /* Listing logo badge */
+        .listing-logo {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            backdrop-filter: blur(6px);
+            z-index: 5;
+        }
+        .listing-logo img {
+            height: 28px;
+            width: auto;
+            display: block;
+        }
+
+        .listing-card {
+            transition: all 0.4s ease;
+        }
+        .listing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .listing-card:hover .listing-img {
+            transform: scale(1.05);
+        }
+        .listing-img {
+            transition: transform 0.6s ease;
         }
     </style>
 </head>
@@ -59,11 +92,8 @@
     <nav class="fixed w-full z-50 top-0">
         <div class="max-w-7xl mx-auto px-6 py-5">
             <div class="flex justify-between items-center">
-                <!-- Updated to your Red Signature Logo -->
-                <div class="w-48 md:w-64">
-                    <img src="logo.png" alt="Skyscraper Realtors" class="w-full h-auto">
-                </div>
-                <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+                <div class="text-xl font-semibold tracking-tight">SKYSCRAPER REALTORS</div>
+                <div class="hidden md:flex gap-8 text-sm">
                     <a href="#about" class="hover:text-gold transition-colors">About</a>
                     <a href="#projects" class="hover:text-gold transition-colors">Listings</a>
                     <a href="#reviews" class="hover:text-gold transition-colors">Reviews</a>
@@ -89,11 +119,12 @@
                 <p class="text-xl text-white/80 mb-10 max-w-xl">
                     Specialists in Shivaji Park, Dadar, Prabhadevi, Bastian and Trump Tower. For 20 years, the most trusted name in real estate in Dadar.
                 </p>
-                <a href="#contact" class="bg-gold text-black px-8 py-4 font-medium hover:bg-white transition-all duration-300 inline-block">
+                <a href="#contact" class="bg-gold text-black px-8 py-4 font-medium hover:bg-white transition-all duration-300">
                     Contact Us Now
                 </a>
             </div>
         </div>
+
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
             <i class="fa fa-angle-down text-2xl opacity-70"></i>
         </div>
@@ -105,18 +136,22 @@
             <div class="fade-in">
                 <p class="text-gold mb-4 tracking-[0.2em] uppercase text-sm">About Us</p>
                 <h2 class="text-4xl font-bold mb-8">We are not like other agents.</h2>
+                
                 <p class="text-white/70 text-lg mb-6">
-                    For 20 years we have not been just real estate agents in Dadar. We are the guys that know which building has the best sea breeze at 7pm. We know which society will actually approve your flat transfer in 2 weeks instead of 2 months.
+                    For 20 years we have not been just real estate agents in Dadar. We are the guys that know which building has the best sea breeze at 7pm. We know which society will actually approve your flat transfer in 2 weeks instead of 2 months. We know every old uncle, every watchman, every secret listing that never gets posted on 99acres or Magicbricks.
                 </p>
+
                 <p class="text-white/70 text-lg mb-6">
                     We don't work for builders. We work for you. The guy that wants his first home. The family that wants to upgrade. The owner that wants a fair price without the nonsense.
                 </p>
+
                 <p class="text-white/70 text-lg">
-                    You have seen us around Dadar. We are not some fancy corporate agency from Bandra. We are from here. And that is the difference.
+                    You have seen us around Dadar. You have probably passed our office 100 times. We are not some fancy corporate agency from Bandra. We are from here. And that is the difference.
                 </p>
             </div>
+
             <div class="fade-in">
-                <div class="rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                <div class="rounded-xl overflow-hidden">
                     <img src="https://i.imgur.com/9Z7KqLw.jpeg" alt="Mumbai Skyline" class="w-full">
                 </div>
             </div>
@@ -127,60 +162,82 @@
     <section id="projects" class="py-24 bg-neutral-950">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
-                <p class="text-gold mb-4 tracking-[0.2em] uppercase text-sm">Our Exclusive Inventory</p>
-                <h2 class="text-4xl font-bold">Ultra-Luxury Properties</h2>
+                <p class="text-gold mb-4 tracking-[0.2em] uppercase text-sm">Our Featured Listings</p>
+                <h2 class="text-4xl font-bold">Premium Properties</h2>
+                <p class="text-white/60 mt-4 max-w-2xl mx-auto">Curated luxury residences from Mumbai's most trusted developers.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 fade-in">
-                
-                <!-- Listing 1: Raymond -->
-                <div class="project-card bg-neutral-900 rounded-2xl overflow-hidden group relative cursor-pointer transition-transform hover:-translate-y-2 duration-300">
-                    <div class="relative aspect-[4/5] overflow-hidden">
-                        <img src="raymond-project.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <!-- Logo: Top Left Centre, Small -->
-                        <div class="absolute top-4 left-4 w-20 md:w-28 pointer-events-none">
-                            <img src="raymond-logo.png" alt="Raymond Realty" class="w-full h-auto drop-shadow-lg">
+            <div class="grid md:grid-cols-3 gap-6 fade-in">
+
+                <!-- LISTING 1 - RAYMOND REALTY -->
+                <div class="bg-neutral-900 rounded-xl overflow-hidden listing-card relative">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <!-- Raymond Realty logo top-left -->
+                        <div class="listing-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Raymond_Group_Logo.svg/2560px-Raymond_Group_Logo.svg.png" alt="Raymond Realty" onerror="this.src='https://www.raymondrealty.in/images/logo.png'">
                         </div>
+                        <img src="REPLACE_WITH_RAYMOND_PROJECT_IMAGE.jpg" alt="Raymond Realty Project" class="listing-img w-full h-full object-cover">
                     </div>
-                    <div class="p-6 border-t border-white/10">
-                        <p class="text-gold text-xs mb-2 tracking-widest uppercase">Luxury Residences</p>
-                        <h3 class="text-2xl font-bold mb-2">Raymond Realty</h3>
-                        <p class="text-white/60 text-sm">Exceptional architecture and world-class amenities in the heart of the city.</p>
+                    <div class="p-6">
+                        <p class="text-gold text-sm mb-2 tracking-wider uppercase">Thane West</p>
+                        <h3 class="text-xl font-semibold mb-2">Raymond Realty - The Address by GS</h3>
+                        <p class="text-white/60 text-sm mb-4">Premium 2, 3 & 4 BHK residences in a landmark gated township with resort-style amenities.</p>
+                        <div class="flex gap-4 text-white/50 text-xs pt-4 border-t border-neutral-800">
+                            <span><i class="fa fa-bed text-gold mr-1"></i> 2/3/4 BHK</span>
+                            <span><i class="fa fa-building text-gold mr-1"></i> High-Rise</span>
+                            <span><i class="fa fa-tag text-gold mr-1"></i> On Request</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Listing 2: 25 South -->
-                <div class="project-card bg-neutral-900 rounded-2xl overflow-hidden group relative cursor-pointer transition-transform hover:-translate-y-2 duration-300">
-                    <div class="relative aspect-[4/5] overflow-hidden">
-                        <img src="south-project.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <!-- Logo: Top Left Centre -->
-                        <div class="absolute top-4 left-4 w-24 md:w-32 pointer-events-none">
-                            <img src="south-logo.png" alt="25 South" class="w-full h-auto drop-shadow-lg">
+                <!-- LISTING 2 - 25 SOUTH -->
+                <div class="bg-neutral-900 rounded-xl overflow-hidden listing-card relative">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <!-- 25 South logo top-left -->
+                        <div class="listing-logo">
+                            <img src="REPLACE_WITH_25SOUTH_LOGO.png" alt="25 South Prabhadevi">
                         </div>
+                        <img src="REPLACE_WITH_25SOUTH_PROJECT_IMAGE.jpg" alt="25 South Project" class="listing-img w-full h-full object-cover">
                     </div>
-                    <div class="p-6 border-t border-white/10">
-                        <p class="text-gold text-xs mb-2 tracking-widest uppercase">Prabhadevi</p>
-                        <h3 class="text-2xl font-bold mb-2">25 South</h3>
-                        <p class="text-white/60 text-sm">Bespoke homes by the bay. The pinnacle of coastal luxury living.</p>
+                    <div class="p-6">
+                        <p class="text-gold text-sm mb-2 tracking-wider uppercase">Prabhadevi</p>
+                        <h3 class="text-xl font-semibold mb-2">25 South - Bespoke Homes by the Bay</h3>
+                        <p class="text-white/60 text-sm mb-4">Ultra-luxury sea-facing residences with iconic architecture and panoramic Mumbai bay views.</p>
+                        <div class="flex gap-4 text-white/50 text-xs pt-4 border-t border-neutral-800">
+                            <span><i class="fa fa-bed text-gold mr-1"></i> 3/4 BHK</span>
+                            <span><i class="fa fa-anchor text-gold mr-1"></i> Sea View</span>
+                            <span><i class="fa fa-tag text-gold mr-1"></i> On Request</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Listing 3: Godrej -->
-                <div class="project-card bg-neutral-900 rounded-2xl overflow-hidden group relative cursor-pointer transition-transform hover:-translate-y-2 duration-300">
-                    <div class="relative aspect-[4/5] overflow-hidden">
-                        <img src="godrej-project.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <!-- Logo: Top Left Centre -->
-                        <div class="absolute top-4 left-4 w-24 md:w-32 pointer-events-none">
-                            <img src="godrej-logo.png" alt="Godrej Properties" class="w-full h-auto drop-shadow-lg">
+                <!-- LISTING 3 - GODREJ PROPERTIES -->
+                <div class="bg-neutral-900 rounded-xl overflow-hidden listing-card relative">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <!-- Godrej Properties logo top-left -->
+                        <div class="listing-logo">
+                            <img src="https://logos-world.net/wp-content/uploads/2020/12/Godrej-Logo.png" alt="Godrej Properties" onerror="this.src='REPLACE_WITH_GODREJ_LOGO.png'">
                         </div>
+                        <img src="REPLACE_WITH_GODREJ_PROJECT_IMAGE.jpg" alt="Godrej Properties Project" class="listing-img w-full h-full object-cover">
                     </div>
-                    <div class="p-6 border-t border-white/10">
-                        <p class="text-gold text-xs mb-2 tracking-widest uppercase">Mumbai Premium</p>
-                        <h3 class="text-2xl font-bold mb-2">Godrej Properties</h3>
-                        <p class="text-white/60 text-sm">Modern skyscrapers blending nature and urban luxury perfectly.</p>
+                    <div class="p-6">
+                        <p class="text-gold text-sm mb-2 tracking-wider uppercase">Mumbai</p>
+                        <h3 class="text-xl font-semibold mb-2">Godrej Properties - Premium Towers</h3>
+                        <p class="text-white/60 text-sm mb-4">Iconic high-rise residences from one of India's most trusted developers — sustainable, modern, premium.</p>
+                        <div class="flex gap-4 text-white/50 text-xs pt-4 border-t border-neutral-800">
+                            <span><i class="fa fa-bed text-gold mr-1"></i> 2/3/4 BHK</span>
+                            <span><i class="fa fa-leaf text-gold mr-1"></i> Green Living</span>
+                            <span><i class="fa fa-tag text-gold mr-1"></i> On Request</span>
+                        </div>
                     </div>
                 </div>
 
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <a href="#contact" class="inline-block bg-gold text-black px-8 py-4 font-medium hover:bg-white transition-all duration-300">
+                    Enquire About These Properties
+                </a>
             </div>
         </div>
     </section>
@@ -191,36 +248,50 @@
             <p class="text-gold mb-4 tracking-[0.2em] uppercase text-sm">Google Reviews</p>
             <h2 class="text-4xl font-bold">What people say about us</h2>
         </div>
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="fade-in bg-neutral-900 p-8 rounded-xl border border-white/5">
-                <div class="flex text-gold mb-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                <p class="mb-6 text-white/80 italic">"Amazing place actually the price and everything regarding property is best and very helpful for us now we have our own house because of them thank you so much ❤️"</p>
+            <div class="fade-in bg-neutral-900 p-8 rounded-xl">
+                <div class="flex text-gold mb-4">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="mb-6 text-white/80">Amazing place actually the price and everything regarding property is best and very helpful for us now we have our own house because of them thank you so much ❤️</p>
                 <p class="font-medium">Ajay Vaykar</p>
                 <p class="text-white/50 text-sm">2 years ago</p>
             </div>
-            <div class="fade-in bg-neutral-900 p-8 rounded-xl border border-white/5">
-                <div class="flex text-gold mb-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                <p class="mb-6 text-white/80 italic">"Nice Professional Approach.. Very Helpful and Honest Staff. Keep up the good work"</p>
+
+            <div class="fade-in bg-neutral-900 p-8 rounded-xl">
+                <div class="flex text-gold mb-4">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="mb-6 text-white/80">Nice Professional Approach.. Very Helpful and Honest Staff. Keep up the good work</p>
                 <p class="font-medium">Chetan Patil</p>
                 <p class="text-white/50 text-sm">2 years ago</p>
             </div>
-            <div class="fade-in bg-neutral-900 p-8 rounded-xl border border-white/5">
-                <div class="flex text-gold mb-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                <p class="mb-6 text-white/80 italic">"Helpful services to achieve and fulfill our requirements."</p>
+
+            <div class="fade-in bg-neutral-900 p-8 rounded-xl">
+                <div class="flex text-gold mb-4">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="mb-6 text-white/80">Helpful services to achieve and fulfill our requirements.</p>
                 <p class="font-medium">Kusshal Thakker</p>
                 <p class="text-white/50 text-sm">Local Guide</p>
             </div>
-            <div class="fade-in bg-neutral-900 p-8 rounded-xl border border-white/5">
-                <div class="flex text-gold mb-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                <p class="mb-6 text-white/80 italic">"Best real estate agent in Dadar"</p>
+
+            <div class="fade-in bg-neutral-900 p-8 rounded-xl">
+                <div class="flex text-gold mb-4">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="mb-6 text-white/80">Best real estate agent in Dadar</p>
                 <p class="font-medium">Zoher Belif</p>
                 <p class="text-white/50 text-sm">Local Guide · 78 reviews</p>
             </div>
-            <div class="fade-in bg-neutral-900 p-8 rounded-xl border border-white/5">
-                <div class="flex text-gold mb-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-                <p class="mb-6 text-white/80 italic">"Nice and help full broker"</p>
-                <p class="font-medium">Client Review</p>
-                <p class="text-white/50 text-sm">6 years ago</p>
+
+            <div class="fade-in bg-neutral-900 p-8 rounded-xl">
+                <div class="flex text-gold mb-4">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </div>
+                <p class="mb-6 text-white/80">Nice and help full broker</p>
+                <p class="font-medium">6 years ago</p>
             </div>
         </div>
     </section>
@@ -231,25 +302,26 @@
             <div class="text-center mb-16 fade-in">
                 <p class="text-gold mb-4 tracking-[0.2em] uppercase text-sm">For Property Owners</p>
                 <h2 class="text-4xl font-bold mb-4">List your property with us</h2>
-                <p class="text-white/70 max-w-2xl mx-auto">Sell or rent your property through Dadar's most trusted agency. Submit your details and we'll handle the rest.</p>
+                <p class="text-white/70 max-w-2xl mx-auto">If you are an owner looking to sell or rent your property, submit your details here directly. We will get back to you within 24 hours.</p>
             </div>
+
             <form class="grid gap-4 fade-in">
                 <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Your Full Name" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold border border-white/5">
-                    <input type="text" placeholder="Phone Number" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold border border-white/5">
+                    <input type="text" placeholder="Your Full Name" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold">
+                    <input type="text" placeholder="Phone Number" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold">
                 </div>
-                <input type="text" placeholder="Property Address" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold border border-white/5">
+                <input type="text" placeholder="Property Address" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold">
                 <div class="grid md:grid-cols-3 gap-4">
-                    <select class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold border border-white/5">
+                    <select class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold">
                         <option>Sell</option>
                         <option>Rent</option>
                     </select>
-                    <input type="text" placeholder="Bedrooms" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold border border-white/5">
-                    <input type="text" placeholder="Expected Price" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold border border-white/5">
+                    <input type="text" placeholder="Bedrooms" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold">
+                    <input type="text" placeholder="Expected Price" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold">
                 </div>
-                <textarea placeholder="Additional Details" rows="4" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold border border-white/5"></textarea>
-                <button class="bg-gold text-black px-8 py-4 font-bold hover:bg-white transition-all duration-300 w-full uppercase tracking-widest">
-                    Submit Property
+                <textarea placeholder="Additional Details" rows="4" class="bg-neutral-900 px-6 py-4 rounded-lg outline-none focus:ring-1 ring-gold"></textarea>
+                <button class="bg-gold text-black px-8 py-4 font-medium hover:bg-white transition-all duration-300 w-full">
+                    Submit Property Details
                 </button>
             </form>
         </div>
@@ -261,6 +333,7 @@
             <div class="fade-in">
                 <p class="text-gold mb-4 tracking-[0.2em] uppercase text-sm">Contact Us</p>
                 <h2 class="text-4xl font-bold mb-8">Get In Touch</h2>
+
                 <div class="space-y-6 text-lg">
                     <div class="flex gap-4 items-start">
                         <i class="fa fa-map-marker text-gold mt-1 text-xl"></i>
@@ -269,6 +342,7 @@
                             <p class="text-white/70">Shivsena Bhavan, Shop No 6, NC Kelkar Marg, Dadar West, Mumbai - 400028</p>
                         </div>
                     </div>
+
                     <div class="flex gap-4 items-start">
                         <i class="fa fa-phone text-gold mt-1 text-xl"></i>
                         <div>
@@ -276,6 +350,7 @@
                             <p class="text-white/70">098214 47122</p>
                         </div>
                     </div>
+
                     <div class="flex gap-4 items-start">
                         <i class="fa fa-clock-o text-gold mt-1 text-xl"></i>
                         <div>
@@ -285,8 +360,16 @@
                     </div>
                 </div>
             </div>
-            <div class="fade-in rounded-xl overflow-hidden h-[400px] border border-white/10">
-                <iframe src="https://www.google.com/maps?q=Shivsena%20Bhavan%20Dadar%20West&z=15&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+            <div class="fade-in rounded-xl overflow-hidden h-[400px]">
+                <iframe 
+                    src="https://www.google.com/maps?q=Shivsena%20Bhavan%20Dadar%20West&z=15&output=embed" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
             </div>
         </div>
     </section>
@@ -319,5 +402,35 @@
             }
         })
     </script>
+
 </body>
 </html>
+```
+
+---
+
+## ⚡ IMPORTANT — Image Setup
+
+You need to **upload your 3 project images** and **logos** then replace these placeholders in the code:
+
+### Project Images to Replace:
+| Placeholder | Replace With |
+|---|---|
+| `REPLACE_WITH_RAYMOND_PROJECT_IMAGE.jpg` | The pool/twin tower image (1st image you sent) |
+| `REPLACE_WITH_25SOUTH_PROJECT_IMAGE.jpg` | The tall green-facade tower (2nd image) |
+| `REPLACE_WITH_GODREJ_PROJECT_IMAGE.jpg` | The twin towers with greenery (3rd image) |
+
+### Logo Images to Replace:
+| Placeholder | Replace With |
+|---|---|
+| `REPLACE_WITH_25SOUTH_LOGO.png` | The 25 South gold logo you sent |
+| `REPLACE_WITH_GODREJ_LOGO.png` | Godrej Properties logo (fallback) |
+
+The Raymond Realty logo uses a working URL, but you can replace it with a local file too if you prefer.
+
+### How to host images (easiest):
+1. Upload each image to **imgur.com** (free, no signup needed)
+2. Right-click → Copy image address
+3. Paste that URL in place of `REPLACE_WITH_...`
+
+The logos will appear as a clean white badge **top-left** of each project image — small, professional, and not overpowering. ✅
